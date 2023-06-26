@@ -49,3 +49,25 @@ exports.signup = async (req, res) => {
         })
     }
 }
+// Login
+exports.login = async (req,res) => {
+    try
+    {
+        const {email,password} = req.body;
+        if(!email || !password)
+        {
+            return res.status(400).json({
+                success:false,
+                message : "Please fill all the details carefully",
+            })
+        }
+
+        // check for register user 
+        let user = await User.findOne({email});
+        if(!user)
+        {
+            return res.status(401).json({
+                success : false,
+                message : "User does not exist",
+            });
+        }

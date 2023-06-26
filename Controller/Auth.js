@@ -17,3 +17,14 @@ exports.signup = async (req, res) => {
                 message: "User Already Exists",
             })
         }
+         // Secured password 
+         let hashedPassword;
+         try {
+             hashedPassword = await bcrypt.hash(password, 10);
+         }
+         catch (err) {
+             return res.status(500).json({
+                 success: false,
+                 message: "Error in hashing password",
+             })
+         }

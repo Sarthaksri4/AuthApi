@@ -7,10 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-const connect = require('./config/database');
-connect();
-
-// require("./config/database").connect()
+require("./config/database").connect()
 
 // route import and mount 
 const user = require("./routes/user");
